@@ -45,7 +45,7 @@ def run(args):
 
     optimizer = get_optimizer(model, args)
     
-    model = nn.DataParallel(model)
+    # model = nn.DataParallel(model)
     model.to(device)
     
     # set up the trainer
