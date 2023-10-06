@@ -104,7 +104,9 @@ class PSCTrainer(nn.Module):
 
         self.model.train()
         epoch_iterator = tqdm(self.train_loader, desc="Iteration")
+        print(self.args.epochs)
         for epoch in range(self.args.epochs):
+
             for j, batch in enumerate(epoch_iterator):
                 if self.args.num_turn > 1:
                     input_ids, attention_mask, pairsimi = self.prepare_pairwise_input_multiturn_concatenate(batch)
