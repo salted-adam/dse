@@ -26,7 +26,7 @@ def setup_path(args):
     resPath += f'.decay{args.decay_rate}'
     resPath += f'.seed{args.seed}'
     resPath += f'.turn{args.num_turn}/'
-    resPath = args.resdir + resPath
+    resPath = os.path.join(args.resdir, resPath)
     print(f'results path: {resPath}')
 
     tensorboard = SummaryWriter(resPath)
