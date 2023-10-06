@@ -7,7 +7,7 @@ import json
 import random
 import argparse
 from datasets import load_dataset
-from utils.data import _generate_few_shot_data_files
+from evaluate.utils.data import _generate_few_shot_data_files
 
 
 
