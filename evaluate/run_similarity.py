@@ -151,7 +151,7 @@ def eval_response_selection_amazonqa(model, tokenizer, model_dir, data_root_dir,
 def eval_response_selection_ubuntu(model, tokenizer, model_dir, data_root_dir, output_dir='results/rs', task_type='average_embedding', max_seq_length=256):
     print("\n\n Evaluating response selection on Ubuntu")
     
-    data_dir = os.path.join(data_root_dir, 'rs.tsv')
+    data_dir = os.path.join(data_root_dir, 'rs-test.tsv')
     with open(data_dir, "r") as f:
         data = list(csv.reader(f, delimiter="\t"))
         query = [d[0] for d in data] 
