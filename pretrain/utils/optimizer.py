@@ -27,8 +27,8 @@ def get_optimizer(model, args):
     return optimizer 
     
 
-def get_bert_config_tokenizer(model_name):
-    config = AutoConfig.from_pretrained(MODEL_CLASS[model_name])
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_CLASS[model_name])
+def get_bert_config_tokenizer(model_path):
+    config = AutoConfig.from_pretrained(model_path)
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
     return config, tokenizer
 

@@ -35,8 +35,9 @@ def run(args):
         return ValueError()
     
     # model & optimizer
-    config, tokenizer = get_bert_config_tokenizer(args.bert)
     model_path = MODEL_CLASS[args.bert] if args.local_model else args.bert
+    config, tokenizer = get_bert_config_tokenizer(model_path)
+
     if 'roberta' in args.bert:
         model = PSCRoberta.from_pretrained(model_path, feat_dim=args.feat_dim)
     elif 'distilbert' in args.bert:
