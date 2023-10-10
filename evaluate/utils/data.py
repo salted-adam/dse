@@ -311,6 +311,7 @@ def _read_data_response_selection(file_path):
 
 
 def _tokenize_multiturn_dialogue_concatenate(raw_text, tokenizer, max_seq_len, change_usrsys_to_sep_token=False, data_clean=False):
+    print("data_clean, change_usrsys_to_sep_token", data_clean, change_usrsys_to_sep_token)
     if data_clean:    
         cleaned_text = [t.replace("[SEP]", "") for t in raw_text]
         if change_usrsys_to_sep_token:
