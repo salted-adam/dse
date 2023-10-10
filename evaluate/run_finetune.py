@@ -304,12 +304,14 @@ def train(args, model, train_dataset, val_dataset, test_dataset):
                 val_metric, val_loss = evaluate(val_dataset, model, args, prefix="Valid")
                 val_metric = val_metric['main']
                 if args.early_stop_type == "metric":
+                    print(f"val_metric <= best_metric {val_metric} <= {best_metric}")
                     if val_metric <= best_metric:
                         early_stop_count += 1
                     else:
                         early_stop_count = 0
                         best_metric = val_metric
                         test_metric_with_best_valid, _ = evaluate(test_dataset, model, args, prefix="Test")
+                        print("test_metric_with_best_valid " + test_metric_with_best_valid)
                         model_to_save = deepcopy(model.module) if hasattr(model, "module") else deepcopy(model)
 
                 elif args.early_stop_type == "loss":
