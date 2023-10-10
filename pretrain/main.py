@@ -74,7 +74,7 @@ def get_args(argv):
     # Contrastive learning
     parser.add_argument('--mode', type=str, default='contrastive', help="")
     parser.add_argument('--bert', type=str, default='distilbert', help="")
-    parser.add_argument('--local_model', type=bool, default=False, help="")
+    parser.add_argument('--local_model', action=argparse.BooleanOptionalAction, help="")
     parser.add_argument('--contrast_type', type=str, default="HardNeg")
     parser.add_argument('--feat_dim', type=int, default=128, help="dimension of the projected features for instance discrimination loss")
     parser.add_argument('--decay_rate', type=float, default=1, help="the decay rate when modeling multi-turn dialogue")
