@@ -311,7 +311,7 @@ def train(args, model, train_dataset, val_dataset, test_dataset):
                         early_stop_count = 0
                         best_metric = val_metric
                         test_metric_with_best_valid, _ = evaluate(test_dataset, model, args, prefix="Test")
-                        print("test_metric_with_best_valid " + test_metric_with_best_valid)
+                        print("test_metric_with_best_valid " + str(test_metric_with_best_valid))
                         model_to_save = deepcopy(model.module) if hasattr(model, "module") else deepcopy(model)
 
                 elif args.early_stop_type == "loss":
