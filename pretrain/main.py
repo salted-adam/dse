@@ -36,12 +36,13 @@ def run(args):
     
     # model & optimizer
     config, tokenizer = get_bert_config_tokenizer(args.bert)
+    model_path = MODEL_CLASS[args.bert] if args.local_model else args.bert
     if 'roberta' in args.bert:
-        model = PSCRoberta.from_pretrained(MODEL_CLASS[args.bert], feat_dim=args.feat_dim)
+        model = PSCRoberta.from_pretrained(model_path, feat_dim=args.feat_dim)
     elif 'distilbert' in args.bert:
-        model = PSCDistilBERT.from_pretrained(MODEL_CLASS[args.bert], feat_dim=args.feat_dim)
+        model = PSCDistilBERT.from_pretrained(model_path, feat_dim=args.feat_dim)
     else:
-        model = PSCBert.from_pretrained(MODEL_CLASS[args.bert], feat_dim=args.feat_dim)
+        model = PSCBert.from_pretrained(model_path, feat_dim=args.feat_dim)
 
     optimizer = get_optimizer(model, args)
     
@@ -73,6 +74,7 @@ def get_args(argv):
     # Contrastive learning
     parser.add_argument('--mode', type=str, default='contrastive', help="")
     parser.add_argument('--bert', type=str, default='distilbert', help="")
+    parser.add_argument('--local_model', type=bool, default=False, help="")
     parser.add_argument('--contrast_type', type=str, default="HardNeg")
     parser.add_argument('--feat_dim', type=int, default=128, help="dimension of the projected features for instance discrimination loss")
     parser.add_argument('--decay_rate', type=float, default=1, help="the decay rate when modeling multi-turn dialogue")
