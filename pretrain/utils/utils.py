@@ -17,7 +17,7 @@ def setup_path(args):
     resPath = args.mode
     resPath += f'.{args.contrast_type}'
     resPath += f'.epoch{args.epochs}'
-    resPath += f'.{args.bert}'
+    resPath += f'.{args.bert.replace(".", "-")}'
     resPath += f'.{args.dataname}'
     resPath += f'.lr{args.lr}'
     resPath += f'.lrscale{args.lr_scale}'
