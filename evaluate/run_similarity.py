@@ -329,6 +329,7 @@ if __name__ == "__main__":
     parser.add_argument('--embedding_type', type=str, default='average_embedding', help="How to calculate sentence embedding. Choose from ['average_embedding', 'cls_embedding']")
     parser.add_argument('--num_runs', type=int, default=10, help="Number of independent experiments to run for 'oos' and 'intent'. ")
     parser.add_argument('--max_seq_length', type=int, default=50, help="Max length of the input sequence")
+    parser.add_argument('--use_slow_tokenizer', action='store_true', default=False)
 
 
     args = parser.parse_args()    
@@ -343,7 +344,7 @@ if __name__ == "__main__":
 
     args.model_dir = args.model_dir.replace("//","/")
     model = AutoModel.from_pretrained(args.model_dir)
-    tokenizer = AutoTokenizer.from_pretrained(args.model_dir, use_fast=True)
+    tokenizer = AutoTokenizer.from_pretrained(args.model_dir, use_fast=not args.use_slow_tokenizer)
     if tokenizer.pad_token == None:
         tokenizer.pad_token = tokenizer.eos_token
 
